@@ -32,7 +32,23 @@ for symbol in operations:
   print(symbol)
 operation_symbol = input("Pick an operation from the line above: ")
 
-answer = operations[operation_symbol](num_1, num_2)
+continue_calculation = True
 
-print(f"{num_1} {operation_symbol} {num_2} = {answer}")
+calculation_function = operations[operation_symbol]
+first_answer = calculation_function(num_1, num_2)
+print(f"{num_1} {operation_symbol} {num_2} = {first_answer}")
+
+while continue_calculation == True:
+  choice = input("do you want to continue with another calculation? Y or N: ")
+  if choice != "Y":
+    continue_calculation = False
+    break 
+  next_operation = input("choose another operation: ")
+  next_number = int(input("choose another number: "))
+  calculation_function = operations[next_operation]
+  next_answer = calculation_function(first_answer, next_number)
+  print(f"{first_answer} {next_operation} {next_number} = {next_answer}")
+  first_answer = next_answer
+  
+
   
